@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "SET DEBUG=app:* & nodemon index",
     "start": "SET NODE_ENV=production & node index",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "prettier --write ."
   },
   "author": "",
   "license": "ISC",

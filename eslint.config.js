@@ -1,7 +1,7 @@
-const { Linter } =require ('eslint');
+const { Linter } = require('eslint');
 
 /** @type {Linter.FlatConfig[]} */
-module.exports [
+module.exports[
   {
     // Define el entorno y las opciones del parser
     languageOptions: {
@@ -20,4 +20,4 @@ module.exports [
       'no-console': 'warn',
     },
   }
-]
+];
