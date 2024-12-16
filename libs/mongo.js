@@ -19,8 +19,8 @@ class MongoLib {
     if (!MongoLib.connection) {
       try {
         await mongoose.connect(uri, {
-          user:User,
-          pass:password,
+          user: User,
+          pass: password,
         });
         MongoLib.connection = mongoose.connection;
       } catch (err) {
@@ -31,7 +31,7 @@ class MongoLib {
   }
 
   static ObjectId(id) {
-    return new mongoose.Types.ObjectId(id); 
+    return new mongoose.Types.ObjectId(id);
   }
 }
 
