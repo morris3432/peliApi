@@ -7,13 +7,18 @@ const passport = require('./oauth');
 const { config } = require('./config/server');
 const PeliApi = require('./routers/pelis');
 const MongoLib = require('./libs/mongo');
-const { LogErrors, errorHandler, wrapError } = require('./utils/middlewares/headerror');
+const {
+  LogErrors,
+  errorHandler,
+  wrapError,
+} = require('./utils/middlewares/headerror');
 const notFoundHandler = require('./utils/middlewares/notFound');
-
 
 const app = express();
 
-app.use(cors({ origin: process.env.ALLOWED_ORIGINS || 'http://localhost:1800' }));
+app.use(
+  cors({ origin: process.env.ALLOWED_ORIGINS || 'http://localhost:1800' }),
+);
 app.use(express.json());
 app.use(
   session({
@@ -26,10 +31,17 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
-  res.redirect('/profile');
-});
+app.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }),
+);
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    res.redirect('/profile');
+  },
+);
 
 const ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next();
@@ -45,12 +57,11 @@ app.get('/', (req, res) => {
   res.send(`Has visitado ${req.session.cuenta} veces`);
 });
 
-
 // Error handling middleware
 app.use(LogErrors);
 app.use(errorHandler);
-app.use(wrapError)
-app.use(notFoundHandler)
+app.use(wrapError);
+app.use(notFoundHandler);
 
 async function startServer() {
   try {
