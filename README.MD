@@ -19,3 +19,5 @@ npm run dev
 ```
 npm run start
 ```
+> http://localhost:1800/api/pelis/ <- api
+> http://localhost:1800/auth/google -> oauth
