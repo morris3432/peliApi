@@ -57,17 +57,17 @@ app.get('/', (req, res) => {
   res.send(`Has visitado ${req.session.cuenta} veces`);
 });
 
-// Error handling middleware
-app.use(LogErrors);
-app.use(errorHandler);
-app.use(wrapError);
-app.use(notFoundHandler);
-
 async function startServer() {
   try {
     const mongoLib = new MongoLib();
 
-    new PeliApi(app);
+    // app.use(LogErrors);
+    // app.use(errorHandler);
+    // app.use(wrapError);
+    // app.use(notFoundHandler);
+
+
+    PeliApi(app);
 
     const port = config.port || 3000;
     app.listen(port, () => {
